@@ -1,17 +1,18 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>
-      Contact
+      Mes notes
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+    <ion-list-header>Notes</ion-list-header>
+    <ion-item *ngFor="let rate of activities">
+      <div item-left>{{ rate.writer.username }}</div>
+      <div text-center>{{ rate.activity.name }}</div>
+      <div item-right>{{ rate.value }}</div>
     </ion-item>
   </ion-list>
 </ion-content>
