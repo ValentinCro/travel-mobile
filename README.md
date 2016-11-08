@@ -1,4 +1,4 @@
-** Project installation
+## Project installation
 
 sudo npm install -g ionic cordova
 
@@ -7,7 +7,7 @@ Dans le projet ionic :
 npm install
 
 
-** Pour lancer le servuer
+## Pour lancer le serveur
 
 ionic serve
 

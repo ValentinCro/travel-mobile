@@ -29,15 +29,15 @@ export class HomePage {
 
   }
 
-  update() {
-    let body = JSON.stringify({
-
-    });
+  updateRate(rate) {
+    let body = JSON.stringify(rate);
 
     this.http.post("http://localhost:8080/test/rate", body)
       .map(response => response.json() as Activity[])
       .subscribe((result : Activity[]) => {
           this.activities = result;
+          this.map.remove();
+          this.loadMap();
         },
         err => {
 
@@ -54,16 +54,15 @@ export class HomePage {
       .map(response => response.json() as Activity[])
       .subscribe((result : Activity[]) => {
           this.activities = result;
-          var map = L.map('map').setView([49.443232, 1.099971], 13);
+          this.map = L.map('map').setView([49.443232, 1.099971], 13);
 
           L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(map);
+          }).addTo(this.map);
 
           for(let i = 0; i < this.activities.length ; i++) {
-            L.marker([this.activities[i].latitude, this.activities[i].longitude]).addTo(map)
-              .bindPopup(this.activities[i].name)
-              .openPopup();
+            L.marker([this.activities[i].latitude, this.activities[i].longitude]).addTo(this.map)
+              .bindPopup(this.activities[i].name);
           }
         },
         err => {

@@ -15,7 +15,7 @@
       <ion-list>
         <ion-item *ngFor="let rate of activitiesRated">
           <ion-label fixed>{{ rate.activity.name }}</ion-label>
-          <ion-input type="number" [(ngModel)]="rate.value" ></ion-input>
+          <ion-input type="number" [(ngModel)]="rate.value" (ngModelChange)="updateRate(rate)"></ion-input>
           <input>
         </ion-item>
       </ion-list>
