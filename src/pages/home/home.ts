@@ -15,8 +15,34 @@ export class HomePage {
   map: any;
   idUser: string = "6457c33b-58a0-4dcf-9a01-b5955091532e";
   activities: Activity[];
-
+  activitiesRated : any;
   constructor(public navCtrl: NavController, public platform: Platform, public http: Http) {
+    this.http.get("http://localhost:8080/test/rate/6457c33b-58a0-4dcf-9a01-b5955091532e")
+      .map(response => response.json() as Activity[])
+      .subscribe((result : Activity[]) => {
+          this.activitiesRated = result;
+        },
+        err => {
+
+        }
+      );
+
+  }
+
+  update() {
+    let body = JSON.stringify({
+
+    });
+
+    this.http.post("http://localhost:8080/test/rate", body)
+      .map(response => response.json() as Activity[])
+      .subscribe((result : Activity[]) => {
+          this.activities = result;
+        },
+        err => {
+
+        }
+      );
   }
 
   ngAfterViewInit() {
