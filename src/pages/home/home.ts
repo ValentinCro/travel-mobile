@@ -30,7 +30,7 @@ export class HomePage {
   }
 
   updateRate(rate) {
-    let body = JSON.stringify(rate);
+    let body = rate;
 
     this.http.post("http://localhost:8080/test/rate", body)
       .map(response => response.json() as Activity[])
